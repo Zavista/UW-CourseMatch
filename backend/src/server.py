@@ -1,13 +1,9 @@
 from fastapi import FastAPI
-
+from dotenv import load_dotenv
 
 from models.user_input import UserInput
 from pipeline.pipeline import Pipeline
-
-from pipeline.steps.fetch_courses import FetchCourses
-from pipeline.steps.filter_courses import FilterCourses
-from pipeline.steps.format_prompt import FormatPrompt
-from backend.src.pipeline.steps.recommend_courses import RecommendCourses
+from pipeline.types.step_types import Step
 
 app = FastAPI(
     version="0.1.0",
@@ -15,6 +11,7 @@ app = FastAPI(
     description="A simple API to match students with courses"
 )
 
+load_dotenv()
 
 @app.get("/")
 def read_root():
@@ -26,10 +23,10 @@ def match_courses(user_input: UserInput):
 
     pipeline = Pipeline()
 
-    pipeline.add_step(FetchCourses())
-    pipeline.add_step(FilterCourses())
-    pipeline.add_step(RecommendCourses())
-    pipeline.add_step(FormatPrompt())
+    pipeline.add_step(Step.FETCH_COURSES)
+    pipeline.add_step(Step.FILTER_COURSES)
+    pipeline.add_step(Step.FORMAT_PROMPT)
+    pipeline.add_step(Step.RECOMMEND_COURSES)
 
     response = pipeline.run(user_input.model_dump())
 
