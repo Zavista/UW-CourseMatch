@@ -36,10 +36,6 @@ The project follows a modular structure with separate folders for different comp
   - **`frontend/`**: Contains the React application for the frontend.
   - **`helm/`**: Contains the Helm charts to deploy the application on Kubernetes.
 
-## Deploying with Docker
-
-TBD
-
 ## Deploying with Helm
 
-TBD
+Project is deployed on the UW CS Club Kubernetes cluster....
