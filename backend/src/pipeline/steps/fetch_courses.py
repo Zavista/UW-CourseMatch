@@ -4,7 +4,6 @@ class FetchCourses(PipeStep):
     
     def process(self, data):
         major = data["major"]
-        term = data["term"]
         
         courses = [
             {"code": "CS135", "name": "Designing Functional Programs"},

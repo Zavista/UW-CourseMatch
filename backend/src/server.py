@@ -23,6 +23,7 @@ def match_courses(user_input: UserInput):
 
     pipeline = Pipeline()
 
+    pipeline.add_step(Step.FETCH_TERM)
     pipeline.add_step(Step.FETCH_COURSES)
     pipeline.add_step(Step.FILTER_COURSES)
     pipeline.add_step(Step.FORMAT_PROMPT)

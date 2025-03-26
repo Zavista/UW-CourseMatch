@@ -12,10 +12,11 @@ The project also includes a React frontend, offering a clean and user-friendly i
 
 The application follows a **pipeline architecture** to process the user's input and match them with courses. The pipeline consists of the following steps:
 
-1. **Fetch Courses**: Retrieves courses from the University of Waterloo API based on the student's major and term.
-2. **Filter Courses**: Filters the courses based on the user's major and past courses.
-3. **Format Prompt**: Prepares a formatted prompt to feed into the LLM (Cohere).
-4. **Select Courses**: Uses the LLM to select the best courses based on the prompt.
+1. **Fetch Term**: Retrieves the term code for the next term from the University of Waterloo API.
+2. **Fetch Courses**: Retrieves courses from the University of Waterloo API based on the student's major.
+3. **Filter Courses**: Filters the courses based on the user's major and past courses.
+4. **Format Prompt**: Prepares a formatted prompt to feed into the LLM (Cohere).
+5. **Select Courses**: Uses the LLM to select the best courses based on the prompt.
 
 Each step is modular and can be extended or modified in the future.
 
