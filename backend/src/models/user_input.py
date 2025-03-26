@@ -1,4 +1,7 @@
-from fastapi import BaseModel
+from pydantic import BaseModel
+from typing import List
 
 class UserInput(BaseModel):
-    n
+    major: str
+    term: str
+    past_courses: List[str]
