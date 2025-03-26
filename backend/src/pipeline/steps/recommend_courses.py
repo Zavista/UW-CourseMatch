@@ -1,6 +1,6 @@
 from pipeline.pipe_step import PipeStep
 
-class SelectCourses(PipeStep):
+class RecommendCourses(PipeStep):
 
     def process(self, data):
         recommendations= [  

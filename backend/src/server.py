@@ -7,7 +7,7 @@ from pipeline.pipeline import Pipeline
 from pipeline.steps.fetch_courses import FetchCourses
 from pipeline.steps.filter_courses import FilterCourses
 from pipeline.steps.format_prompt import FormatPrompt
-from pipeline.steps.select_courses import SelectCourses
+from backend.src.pipeline.steps.recommend_courses import RecommendCourses
 
 app = FastAPI(
     version="0.1.0",
@@ -28,7 +28,7 @@ def match_courses(user_input: UserInput):
 
     pipeline.add_step(FetchCourses())
     pipeline.add_step(FilterCourses())
-    pipeline.add_step(SelectCourses())
+    pipeline.add_step(RecommendCourses())
     pipeline.add_step(FormatPrompt())
 
     response = pipeline.run(user_input.model_dump())
