@@ -1,5 +1,15 @@
 from fastapi import FastAPI
 from dotenv import load_dotenv
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.StreamHandler(),  # Logs to console
+    ],
+)
 
 from models.user_input import UserInput
 from pipeline.pipeline import Pipeline
@@ -15,12 +25,13 @@ load_dotenv()
 
 @app.get("/")
 def read_root():
+    logging.info("Root endpoint accessed.")
     return {"message": "Welcome to the UW CourseMatch API!"}
 
 
 @app.post("/match")
 def match_courses(user_input: UserInput):
-
+    logging.info("MatchCourses endpoint accessed.")
     pipeline = Pipeline()
 
     pipeline.add_step(Step.FETCH_TERM)
@@ -30,18 +41,20 @@ def match_courses(user_input: UserInput):
     pipeline.add_step(Step.RECOMMEND_COURSES)
 
     response = pipeline.run(user_input.model_dump())
-
+    logging.info("MatchCourses endpoint completed successfully.")
     return response
 
 
 from services.uw_api_client import UWAPIClient
 @app.get("/test/{termCode}/{subject}")
 def test(termCode: str, subject: str):
-
+    logging.info(f"Test endpoint accessed with termCode={termCode} and subject={subject}.")
     client = UWAPIClient()
     courses = client.fetch_courses(termCode, subject)
     if not courses:
+        logging.info("No courses found in Test endpoint.")
         return {"message": "No courses found"}
+    logging.info("Test endpoint completed successfully.")
     return courses
 
 if __name__ == "__main__":
