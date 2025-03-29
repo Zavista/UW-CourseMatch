@@ -24,7 +24,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
+    allow_origins=["https://uwcoursematch-d84zhao.k8s.csclub.cloud"],
     allow_credentials=True,
     allow_methods=["*"],  # ✅ Allow all HTTP methods, including OPTIONS
     allow_headers=["*"],  # Allow all headers

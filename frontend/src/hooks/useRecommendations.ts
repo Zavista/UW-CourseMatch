@@ -21,9 +21,8 @@ export const useRecommendations = () => {
   ): Promise<Course[]> => {
     setIsLoading(true);
 
-    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost";
-    const apiPort = import.meta.env.VITE_API_PORT || "30081";
-    const endpoint = `${apiUrl}:${apiPort}/api/v1/match`;
+    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8001";
+    const endpoint = `${apiUrl}/api/v1/match`;
 
     try {
       const response = await fetch(endpoint, {

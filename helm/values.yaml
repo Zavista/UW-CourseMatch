@@ -1,0 +1,24 @@
+frontend:
+  replicaCount: 1
+  image:
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+  ingress:
+    enabled: true
+    host: ""
+    path: "/"
+backend:
+  replicaCount: 1
+  image:
+    repository: ""
+    tag: ""
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 8001
+  api_keys:
+    uw_api_key: ""
+    cohere_api_key: ""
+ingress:
+  host: ""

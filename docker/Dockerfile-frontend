@@ -14,8 +14,7 @@ RUN npm install
 COPY frontend/ ./
 
 # Pass API URL at buildtime instead of hardcoding
-ENV VITE_API_URL=http://localhost
-ENV VITE_API_PORT=30081
+ENV VITE_API_URL=
 
 # Build the Vite app
 RUN npm run build
