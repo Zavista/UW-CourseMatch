@@ -26,7 +26,7 @@ class FormatPrompt(PipeStep):
                 "courseCode": course["courseCode"],
                 "title": course["title"],
                 "requirementsDescription": extract_prereqs(course.get("requirementsDescription", "")),
-                "description": course["description"],
+                "description": course["descriptionAbbreviated"],
             }
             for course in data['courses']
         ]
@@ -46,7 +46,6 @@ class FormatPrompt(PipeStep):
             "- 'courseCode' (string): The course code (e.g., 'CS101') "
             "- 'title' (string): The course title (e.g., 'Introduction to Programming') "
             "- 'description' (string): The course description "
-            "- 'requirementsDescription' (string): A brief description of the course prerequisites (e.g., 'Prereq: None' or 'Prereq: CS101') "
             "2. Ensure there are no extra explanations or text outside of the JSON output. "
             "3. The JSON must be valid, well-formed, and include the correct punctuation, indentation, and structure. "
             "4. Do not include any extra lines, comments, or non-JSON text. "
@@ -57,18 +56,15 @@ class FormatPrompt(PipeStep):
             "{"
             "\"courseCode\": \"<courseCode1>\","
             "\"title\": \"<courseTitle1>\","
-            "\"description\": \"<courseDescription1>\","
-            "\"requirementsDescription\": \"<coursePrerequisites1>\" }, "
+            "\"description\": \"<courseDescription1>\"}, "
             "{ "
             "\"courseCode\": \"<courseCode2>\","
             "\"title\": \"<courseTitle2>\","
-            "\"description\": \"<courseDescription2>\","
-            "\"requirementsDescription\": \"<coursePrerequisites2>\" }, "
+            "\"description\": \"<courseDescription2>\"}, "
             "{ "
             "\"courseCode\": \"<courseCode3>\","
             "\"title\": \"<courseTitle3>\","
-            "\"description\": \"<courseDescription3>\","
-            "\"requirementsDescription\": \"<coursePrerequisites3>\" } ] }"
+            "\"description\": \"<courseDescription3>\"} ] }"
             "Ensure there are no extra lines, explanations, or text outside the JSON. "
             "The output must exactly match the provided format without any deviation."
         )

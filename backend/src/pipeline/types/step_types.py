@@ -5,6 +5,7 @@ from pipeline.steps.filter_courses import FilterCourses
 from pipeline.steps.format_prompt import FormatPrompt
 from pipeline.steps.recommend_courses import RecommendCourses
 from pipeline.steps.fetch_term import FetchTerm
+from pipeline.steps.format_recommendations import FormatRecommendations
 
 class Step(Enum):
     FETCH_TERM = FetchTerm
@@ -12,3 +13,4 @@ class Step(Enum):
     FILTER_COURSES = FilterCourses
     FORMAT_PROMPT = FormatPrompt
     RECOMMEND_COURSES = RecommendCourses
+    FORMAT_RECOMMENDATIONS = FormatRecommendations
