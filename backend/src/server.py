@@ -34,6 +34,16 @@ def match_courses(user_input: UserInput):
     return response
 
 
+from services.uw_api_client import UWAPIClient
+@app.get("/test/{termCode}/{subject}")
+def test(termCode: str, subject: str):
+
+    client = UWAPIClient()
+    courses = client.fetch_courses(termCode, subject)
+    if not courses:
+        return {"message": "No courses found"}
+    return courses
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("server:app", host="0.0.0.0", port=8001, reload=True)
