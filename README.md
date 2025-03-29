@@ -56,4 +56,4 @@ Project is deployed on the UW CS Club Kubernetes cluster....
 
 To deploy with Helm, follow these steps:
 1. **Update the values.yaml file:**: Inside the helm/ directory, update the values.yaml file with the Docker image and your API keys.
-2. **Deploy Helm charts**: ```bash helm install uw-coursematch ./helm```
+2. **Deploy Helm charts**: ```helm install uw-coursematch ./helm```
