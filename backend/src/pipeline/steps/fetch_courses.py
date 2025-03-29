@@ -19,7 +19,9 @@ class FetchCourses(PipeStep):
             course_data = {
                 "courseCode": f"{course['subjectCode']}{course['catalogNumber']}",
                 "title": course["title"],
-                "description": course["description"],
+                "description": course["descriptionAbbreviated"],
+                "requirementsDescription": course.get("requirementsDescription", "Prereq: None"),
+                "associatedAcademicCareer": course.get("associatedAcademicCareer", "")
             }
 
             formatted_courses.append(course_data)

@@ -42,7 +42,7 @@ def match_courses(user_input: UserInput):
 
     response = pipeline.run(user_input.model_dump())
     logging.info("MatchCourses endpoint completed successfully.")
-    return response
+    return response.get("recommendations", [])
 
 
 from services.uw_api_client import UWAPIClient
