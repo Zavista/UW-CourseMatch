@@ -36,6 +36,17 @@ The project follows a modular structure with separate folders for different comp
   - **`frontend/`**: Contains the React application for the frontend.
   - **`helm/`**: Contains the Helm charts to deploy the application on Kubernetes.
 
-## Deploying with Helm
+## Deploying with Docker
+
+```bash
+  cd ~/path/to/uw-coursematch
+  docker build -f docker/Dockerfile-backend -t uw-coursematch-backend:0.0.1 .
+  docker build -f docker/Dockerfile-frontend -t uw-coursematch-frontend:0.0.1 .
+
+
+  docker run -p 30080:8001 -e UW_API_KEY=your_key -e COHERE_API_KEY=your_cohere_key uw-coursematch-backend:0.0.1
+  docker run -p 30080:80 -e  uw-coursematch-frontend:0.0.1
+
+```
 
 Project is deployed on the UW CS Club Kubernetes cluster....

@@ -22,26 +22,18 @@ app = FastAPI(
     description="A simple API to match students with courses"
 )
 
-load_dotenv()
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Allow all origins
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],  # Allow specific HTTP methods
+    allow_methods=["*"],  # ✅ Allow all HTTP methods, including OPTIONS
     allow_headers=["*"],  # Allow all headers
 )
 
-@app.get("/")
-def read_root():
-    """
-    Root endpoint to verify the API is running.
-    """
-    logging.info("Root endpoint accessed.")
-    return {"message": "Welcome to the UW CourseMatch API!"}
+load_dotenv()
 
 
-@app.post("/match")
+@app.post("/api/v1/match")
 def match_courses(user_input: UserInput):
     """
     Matches courses for a student based on their input.
@@ -65,29 +57,6 @@ def match_courses(user_input: UserInput):
     response = pipeline.run(user_input.model_dump())
     logging.info("MatchCourses endpoint completed successfully.")
     return response.get("recommendations", [])
-
-
-from services.uw_api_client import UWAPIClient
-@app.get("/test/{termCode}/{subject}")
-def test(termCode: str, subject: str):
-    """
-    Test endpoint to fetch courses for a given term and subject.
-
-    Args:
-        termCode (str): The term code.
-        subject (str): The subject code.
-
-    Returns:
-        dict: A dictionary containing the fetched courses or an error message.
-    """
-    logging.info(f"Test endpoint accessed with termCode={termCode} and subject={subject}.")
-    client = UWAPIClient()
-    courses = client.fetch_courses(termCode, subject)
-    if not courses:
-        logging.info("No courses found in Test endpoint.")
-        return {"message": "No courses found"}
-    logging.info(f"Test endpoint completed successfully. Found {len(courses)} courses.")
-    return courses
 
 if __name__ == "__main__":
     import uvicorn
